@@ -1,0 +1,9 @@
+name = "frosty-union-24a7"
+type = "typescript"
+
+kv_namespaces = [
+	{ binding = "codeman_kv", id = "codeman" }
+]
+
+[dev]
+port = 8787
