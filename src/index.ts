@@ -16,9 +16,9 @@ export default {
 		const url = new URL(request.url);
 		switch (url.pathname) {
 			case '/message':
-				return new Response('Hello, World!');
+				return new Response(await env.codeman_kv.get("ff"));
 			case '/random':
-				return new Response(crypto.randomUUID());
+				return new Response(await env.codeman_kv.put("ff",1234));
 			default:
 				return new Response('Not Found', { status: 404 });
 		}
