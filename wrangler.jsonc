@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "cloudflare-worker",
+	"name": "frosty-union-24a7",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-08-22",
 	"compatibility_flags": [
