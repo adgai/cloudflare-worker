@@ -10,6 +10,18 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+function jsonResponse(data: unknown, init: ResponseInit = {}): Response {
+	return new Response(JSON.stringify(data), {
+		...init,
+		headers: {
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+			"Access-Control-Allow-Headers": "Content-Type",
+			...(init.headers || {}),
+		},
+	});
+}
 
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
@@ -27,11 +39,11 @@ export default {
 		const url = new URL(request.url);
 		switch (url.pathname) {
 			case '/message':
-				return new Response(await env.codeman_kv.get('ff'));
+				return jsonResponse(await env.codeman_kv.get('ff'));
 			case '/random':
-				return new Response(await env.codeman_kv.put('ff', 1234));
+				return jsonResponse(await env.codeman_kv.put('ff', 1234));
 			default:
-				return new Response('Not Found', { status: 404 });
+				return jsonResponse('Not Found', { status: 404 });
 		}
 	}
 } satisfies ExportedHandler<Env>;
