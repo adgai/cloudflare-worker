@@ -10,8 +10,8 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-function jsonResponse(data: unknown, init: ResponseInit = {}): Response {
-	return new Response(JSON.stringify(data), {
+function jsonResponse(data: string, init: ResponseInit = {}): Response {
+	return new Response(data, {
 		...init,
 		headers: {
 			"Content-Type": "application/json",
